@@ -22,4 +22,4 @@ var summoner = new mongoose.Schema({
     Wins: Number
 });
 
-mongoose.model('Champions', championschema);
+mongoose.model('Champions', championschema, 'ChampionData');
