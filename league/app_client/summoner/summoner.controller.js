@@ -4,9 +4,9 @@
         .module('championApp')
         .controller('summonerCtrl', summonerCtrl);
 
-    weatherCtrl.$inject = ['$scope', 'SelectedData', 'lolSummoner'];
+    summonerCtrl.$inject = ['$scope', 'SelectedData', 'lolSummoner'];
 
-    function weatherCtrl($scope, SelectedData, lolSummoner) {
+    function summonerCtrl($scope, SelectedData, lolSummoner) {
         // Nasty IE9 redirect hack (not recommended)
         /*
         if (window.location.pathname !== '/') {
@@ -15,53 +15,45 @@
         var vm = this;
         console.log(window.location);
 
-        vm.content = "Weather";
+        vm.content = "Summoner";
 
-        vm.selectedDepartureICAO = "";
+        vm.selectedC = "";
         vm.selectedArrivalICAO = "";
         vm.selectedWeight = "";
 
         //check selected Departure
-        if (SelectedData.selectedDepartureICAO !== null) {
-            vm.selectedDepartureICAO = SelectedData.selectedDepartureICAO;
-        }
-        
-        //check selected Arrival
-        if (SelectedData.selectedArrivalICAO !== null) {
-            vm.selectedArrivalICAO = SelectedData.selectedArrivalICAO;
+        if (SelectedData.selectedChampion !== null) {
+            vm.selectedChampion = SelectedData.selectedChampion;
         }
 
-        //check selected weight
-        if (SelectedData.selectedWeight !== null) {
-            vm.selectedWeight = SelectedData.selectedWeight;
-        }
-
-        vm.getDepartureWeather = function() {
+        vm.getSummoner = function() {
             
-            var lat = vm.selectedDepartureICAO.airportLat;
-            console.log(lat);
+            var id = vm.selectedSummoner.name;
+            console.log(id);
             var lon = vm.selectedDepartureICAO.airportLon;
             console.log(lon);            
 
-            DarkskyWeather.getWeather2(lat, lon)
+            lolSummoner.getsummoner(id)
                 .success(function(data) {
-                    vm.departureWeather = data;
-                    console.log(vm.departureWeather);
+                    vm.summonerdata = data;
+                    console.log(vm.summonerdata);
                 })
                 .error(function(e) {
                     console.log(e);
                 });
         }
         
-        vm.getArrivalWeather = function() {
+        vm.getSummonerTwo = function() {
             
-            var lat = vm.selectedArrivalICAO.airportLat;
-            var lon = vm.selectedArrivalICAO.airportLon;
+            var id = vm.selectedSummoner.name;
+            console.log(id);
+            var lon = vm.selectedDepartureICAO.airportLon;
+            console.log(lon);            
 
-            DarkskyWeather.getWeather2(lat, lon)
+            lolSummoner.getsummoner(id)
                 .success(function(data) {
-                    vm.arrivalWeather = data;
-                    console.log(vm.arrivalWeather);
+                    vm.summonerdata = data;
+                    console.log(vm.summonerdata);
                 })
                 .error(function(e) {
                     console.log(e);
@@ -69,8 +61,8 @@
         }
         
         //call services
-        vm.getDepartureWeather();
-        vm.getArrivalWeather();
+        vm.getSummoner();
+        vm.getSummonerTwo();
 
     }
 

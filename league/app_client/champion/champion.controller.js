@@ -4,15 +4,15 @@
     .module('championApp')
     .controller('championCtrl', championCtrl);
 
-  championCtrl.$inject = ['$scope', 'ChampionData', 'ChampionData', 'SelectedData'];
+  championCtrl.$inject = ['$scope', 'ChampionData',  'SelectedData'];
 
-  function championCtrl($scope, ChampionData, ChampionData, SelectedData) {
+  function championCtrl($scope, ChampionData, SelectedData) {
 
     console.log(window.location);    
     
     
     var vm = this;
-    vm.content = "Champion Data";
+    vm.content = "Champions!";
     vm.selectedChampion = "";
     
     //check selected Departure
@@ -24,7 +24,7 @@
       ChampionData.getChampions()
         .success(function(data) {
           vm.champions = data;
-          console.log(vm.airports);
+          console.log(vm.champions);
         })
         .error(function(e) {
           console.log(e);
@@ -46,7 +46,7 @@
       vm.selectedChampion = null;
     }
     
-    //saved departure
+    //saved champion
     $scope.$watch(
       function(){
         return vm.selectedChampion;    
@@ -55,7 +55,7 @@
         console.log(oldValue);
         console.log(newValue);
         if (newValue.name !== oldValue.name){
-          SelectedData.selectedchampion = newValue;
+          SelectedData.selectedChampion = newValue;
         } 
       }, 
       true

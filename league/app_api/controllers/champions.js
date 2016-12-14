@@ -10,7 +10,7 @@ var sendJSONresponse = function(res, status, content) {
 
 //// CLIMB DATA ////////////////////////////////////////////////////////////////
 /* GET all ClimbData records */
-module.exports.climbDataReadAll = function(req, res) {
+module.exports.championDataReadAll = function(req, res) {
     console.log("Finding all ChampionData", req);
 
     ChampionData
