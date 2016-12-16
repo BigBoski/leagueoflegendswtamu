@@ -1,3 +1,13 @@
+<style>
+    body { 
+  background: url("http://www.njmake.org/data/out/166/4742880-league-of-legends-pictures.jpg") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
+}
+</style>
 <div id="wrapper" ng-class="vm.toggle ? 'toggled' : ''">
     <sidebar></sidebar>
 
@@ -12,6 +22,17 @@
                         <p class="bg-info" ng-bind="vm.selectedArrivalICAO.airportName"></p>
                         <weather-info info="vm.arrivalWeather"></weather-info>                        
                         <p class="bg-info" ng-bind="vm.selectedWeight.weight"></p>
+                        
+                        
+                        <div class="wrap">
+   <div class="search">
+      <input type="text" class="searchTerm" placeholder="What are you looking for?">
+      <button type="submit" class="searchButton">
+        <i class="fa fa-search"></i>
+     </button>
+   </div>
+</div>
+                        
                         
                     <!--<a href="#menu-toggle" class="btn btn-default" id="menu-toggle" ng-click="toggleMenu">Toggle Menu</a>-->
                     <button type="button" class="btn btn-default btn-link" id="menu-toggle" ng-model="vm.toggle" ng-click="vm.toggle=!vm.toggle">Toggle Menu</button>
