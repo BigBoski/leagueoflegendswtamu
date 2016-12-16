@@ -1,10 +1,26 @@
-(function() {
+//(function() {
 
   angular
     .module('championApp')
     .controller('championCtrl', championCtrl);
+      championCtrl.$inject = ['$scope'];
 
-  championCtrl.$inject = ['$scope', 'ChampionData',  'SelectedData'];
+function championCtrl($http, $scope) {
+    var vm = this;
+    var datachampion;
+    vm.championNames = [];
+    
+    $http.get('/api/championData').then(function(response){ 
+        
+       datachampion = response.data;
+       vm.output = response.data;
+       
+       for(var i = 0; i<datachampion.length; i++){
+                vm.championNames.push(datachampion[i].name);
+       }
+
+    });    
+  /*championCtrl.$inject = ['$scope', 'ChampionData', 'SelectedData'];
 
   function championCtrl($scope, ChampionData, SelectedData) {
 
@@ -15,7 +31,7 @@
     vm.content = "Champions!";
     vm.selectedChampion = "";
     
-    //check selected Departure
+    //check selected champion
     if(SelectedData.selectedChampion !== null){
       vm.selectedChampion = SelectedData.selectedChampion;
     }
@@ -29,7 +45,7 @@
         .error(function(e) {
           console.log(e);
         });
-    }
+    };
 
     vm.toggleMenu = function() {
       if (vm.class === "toggled") {
@@ -41,12 +57,17 @@
       console.log(vm.class + " is good");
     };
     
-    vm.clearSelectedData = function(){
+    if(datachampion.name !== null){
+        vm.name = datachampion.name;
+    }
+}
+    /*
+    vm.datachampion = function(){
       
       vm.selectedChampion = null;
-    }
+    };
     
-    //saved champion
+   //saved champion
     $scope.$watch(
       function(){
         return vm.selectedChampion;    
@@ -67,4 +88,5 @@
 
   }
 
-})();
+})();*/
+

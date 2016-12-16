@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-var championschema = new mongoose.Schema({
+var Champions = new mongoose.Schema({
     name: String,
     description: String,
     passivename: String,
@@ -16,10 +16,10 @@ var championschema = new mongoose.Schema({
     
 });
 
-var summoner = new mongoose.Schema({ 
+/*var summoner = new mongoose.Schema({ 
     Name: String,
     Losses: Number, 
     Wins: Number
-});
+});*/
 
-mongoose.model('Champions', championschema, 'ChampionData');
+mongoose.model('Champions', Champions, 'Champions');

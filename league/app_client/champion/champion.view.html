@@ -1,9 +1,43 @@
+<style>
+    body { 
+  background: url("https://i.ytimg.com/vi/BGtROJeMPeE/maxresdefault.jpg") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
+}
+</style>
 <div id="wrapper" ng-class="vm.toggle ? 'toggled' : ''">
 
     <sidebar></sidebar>
+    {{vm.output}}
+    
+    <div class="form-group">
+        <label for="selectName">Choose Your Champion!</label>
+            <select id="selectName" 
+                class="form-control" 
+                ng-model="vm.selectName" 
+                ng-options="ch for ch in vm.championNames">
+                <p class="bg-info" ng-bind="vm.name"></p>
+            </select>
+            
+            <p class="bg-info" ng-bind="vm.name"></p>
+                                <button type="button" 
+                            class="btn btn-default btn-link" 
+                            id="menu-toggle" 
+                            ng-model="vm.toggle" 
+                            ng-click="vm.toggle=!vm.toggle">Toggle Menu</button>
+                    <button type="button" 
+                            class="btn btn-default" 
+                            id="clear-selected-data" 
+                            ng-click="vm.clearSelectedData()">Clear Selected</button>
+
+    </div>
+</div>
 
     <!-- Page Content -->
-    <div id="page-content-wrapper">
+     <!--<div id="page-content-wrapper">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
@@ -14,12 +48,11 @@
                                 <select id="selectchampion" 
                                         class="form-control" 
                                         ng-model="vm.selectedChampion" 
-                                        ng-options="apt.championName for apt in vm.champions"></select>
-                                <p class="bg-info" ng-bind="vm.selectedDepartureICAO.airportName"></p>
+                                        ng-options="cmp.championName for cmp in vm.Champions"></select>
+                                <p class="bg-info" ng-bind="vm.Champions.name"></p>
                             </div>
                         </form>
                     
-                    <!--<a href="#menu-toggle" class="btn btn-default" id="menu-toggle" ng-click="toggleMenu">Toggle Menu</a>-->
                     <button type="button" 
                             class="btn btn-default btn-link" 
                             id="menu-toggle" 
@@ -32,7 +65,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>-->
     <!-- /#page-content-wrapper -->
 
 </div>

@@ -4,25 +4,42 @@
     .module('championApp')
     .controller('homeCtrl', homeCtrl);
 
-  homeCtrl.$inject = ['$scope', `SelectedData`];
-
-  function homeCtrl($scope, SelectedData) {
-    // Nasty IE9 redirect hack (not recommended)
-    /*
-    if (window.location.pathname !== '/') {
-      window.location.href = '/#' + window.location.pathname;
-    }*/
+  //homeCtrl.$inject = ['$scope'];
+  
+//homeCtrl.$inject = ['$scope', 'SelectedData']
+  function homeCtrl($http) {
     var vm = this;
+    var datachampion;
+    vm.championNames = [];
+    
+    $http.get('/api/championData').then(function(response){ 
+        
+       datachampion = response.data;
+       vm.output = response.data;
+       
+       for(var i = 0; i<datachampion.length; i++){
+                vm.championNames.push(datachampion[i].name);
+       }
+
+    });  
+    
+   /*     if(SelectedData.name !== null){
+      vm.selectedChampion = SelectedData.name;
+    }
+  function homeCtrl($http) {
+    var vm = this;
+    
+        $http.get('/api/championData').then(function(response){ 
+       vm.output = response.data;
+
+    });*/
     console.log(window.location);
     
-    vm.content = "Champion Data";
+    vm.content = "League of Legends";
     
     vm.selectedChampion = "";
     
-    //check selected Departure
-    if(SelectedData.selectedChampion !== null){
-      vm.selectedChampion = SelectedData.selectedChampion;
-    }
+    
   }
 
 })();

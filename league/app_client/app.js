@@ -35,7 +35,7 @@
   }
 
   angular
-    .module('championCtrlApp')
+    .module('championApp')
     .config(['$routeProvider', '$locationProvider', config]);
 
 })();

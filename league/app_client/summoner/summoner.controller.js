@@ -21,17 +21,10 @@
         vm.selectedArrivalICAO = "";
         vm.selectedWeight = "";
 
-        //check selected Departure
-        if (SelectedData.selectedChampion !== null) {
-            vm.selectedChampion = SelectedData.selectedChampion;
-        }
-
         vm.getSummoner = function() {
             
             var id = vm.selectedSummoner.name;
             console.log(id);
-            var lon = vm.selectedDepartureICAO.airportLon;
-            console.log(lon);            
 
             lolSummoner.getsummoner(id)
                 .success(function(data) {
@@ -47,8 +40,6 @@
             
             var id = vm.selectedSummoner.name;
             console.log(id);
-            var lon = vm.selectedDepartureICAO.airportLon;
-            console.log(lon);            
 
             lolSummoner.getsummoner(id)
                 .success(function(data) {
